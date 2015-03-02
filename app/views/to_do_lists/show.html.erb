@@ -1,0 +1,4 @@
+<h1> Here are the items on <%=@list.name%> </h1>
+<% @items.each do |item|%>
+	<p> <%=item.name%> <%=item.due%> <%=item.completed%></p>
+<%end%>

@@ -1,0 +1,6 @@
+<h1> Welcome! </h1>
+<h2> Here are your lists </h2>
+<% @lists.each do |list| %>
+	<% url = "lists/#{list.id}"%>
+	<p> <a href = "<%=url%>"> <%=list.name%></a></p>
+<%end%>
