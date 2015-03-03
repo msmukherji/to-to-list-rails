@@ -11,6 +11,18 @@ class ToDoListsController < ApplicationController
     render :show_all
   end
 
+  def new_list
+    @list = ToDoList.new
+    render :new_list
+  end
+
+  def add_list
+    list_params = params[:to_do_list]
+    @list = ToDoList.new name: list_params[:name]
+    @list.save!
+    redirect_to '/'
+  end
+
   def new_task 
     @task = Task.new
     render :new
@@ -18,6 +30,7 @@ class ToDoListsController < ApplicationController
 
   def add_task
     task_params = params[:task]
+    binding.pry
     t = ToDoList.find_or_create_by! id: params[:id]
     list_id = t.id
     @task = Task.new name: task_params[:name], due: task_params[:due], to_do_list_id: list_id

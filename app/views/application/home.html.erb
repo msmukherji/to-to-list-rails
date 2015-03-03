@@ -4,3 +4,7 @@
 	<% url = "lists/#{list.id}"%>
 	<p> <a href = "<%=url%>"> <%=list.name%></a></p>
 <%end%>
+
+<form method="get" action="new_list">
+    <button type="submit">Add a new list</button>
+</form>
