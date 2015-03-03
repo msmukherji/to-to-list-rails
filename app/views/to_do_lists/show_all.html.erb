@@ -1,0 +1,4 @@
+<h1> Here are all your unfinished list items </h1>
+<% @unfinisheditems.each do |item|%>
+	<p> <%=item.name%> <%=item.due%> <%=item.completed%></p>
+<%end%>

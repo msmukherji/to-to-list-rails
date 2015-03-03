@@ -2,7 +2,20 @@ Rails.application.routes.draw do
 
   root 'application#home'
 
-  get 'lists/:id'  => 'to_do_lists#show', as: 'lists'
+  get 'lists/:id' => 'to_do_lists#show', as: 'lists'
+
+  get 'lists'     => 'to_do_lists#show_all', as: 'all_unfinished' 
+
+  #get '/new_task' => 'to_do_lists#new_task', as: 'new_task'
+
+  get '/lists/:id/new_task' => 'to_do_lists#new_task', as: 'tasks'
+
+  patch '/lists/:id/new_task' => 'to_do_lists#add_task'
+
+  post '/lists/:id/new_task' => 'to_do_lists#add_task'
+  #post '/add_task' => 'to_do_lists#add_task'
+
+  #post 'lists/:id'=> 'to_do_lists#add_task', as: 'add_task'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2,3 +2,13 @@
 <% @items.each do |item|%>
 	<p> <%=item.name%> <%=item.due%> <%=item.completed%></p>
 <%end%>
+
+<h2> Click below to add a new task to this list </h2>
+
+<%list_id = @list.id%>
+
+
+<form method="get" action="/lists/<%=list_id%>/new_task">
+    <button type="submit">Add a Task</button>
+</form>
+
