@@ -10,8 +10,8 @@
 	</thead>
 
 <% @unfinisheditems.each do |item|%>
-<%list = @lists.find_by(id: item.to_do_list_id)%>
-<%list_name = list.name%>
+	<%list = @lists.find_by(id: item.to_do_list_id)%>
+	<%list_name = list.name%>
 
 	<tr>
 		<td><%=item.name%></td>

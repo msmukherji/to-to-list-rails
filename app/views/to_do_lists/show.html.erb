@@ -13,15 +13,23 @@
 	<tr>
 		<td><%=item.name%></td>
 		<td><%=item.due%></td>
-		<td><%if item.completed %>
-				<%= "Yes!"%>
-			<%else%>
-				<%= "Not yet.."%>
-			<%end%> </td>
+
+		<% url = "/lists/tasks/#{item.id}" %>
+		<td><form action='<%=url%>' method='POST'>
+				<input type='hidden' name='_method' value='PATCH'>
+				<input type='hidden' name='item_id' value=<%=item.id%>>
+					<% if item.completed %>
+						<button class="btn btn-success">BAM!</button>
+					<% else %>
+						<button class="btn btn-danger">Not yet.</button>
+					<% end %>
+			</form> 
+		</td>
 	</tr>
 <%end%>
 
 </table>
+
 <%list_id = @list.id%>
 
 <br>

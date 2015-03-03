@@ -39,4 +39,13 @@ class ToDoListsController < ApplicationController
     redirect_to lists_path
   end
 
+  def done
+    t = Task.find(params[:item_id])
+    t.update! completed: true
+    redirect_to lists_path
+    #this does something weird
+    #I think because it goes back to show function, 
+    #and keeps id as list_id.
+  end
+
 end
