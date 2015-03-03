@@ -13,7 +13,11 @@
 	<tr>
 		<td><%=item.name%></td>
 		<td><%=item.due%></td>
-		<td><%=item.completed%></td>
+		<td><%if item.completed %>
+				<%= "Yes!"%>
+			<%else%>
+				<%= "Not yet.."%>
+			<%end%> </td>
 	</tr>
 <%end%>
 
