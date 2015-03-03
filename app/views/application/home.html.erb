@@ -1,10 +1,13 @@
+
 <h1> Welcome! </h1>
+<br>
 <h2> Here are your lists </h2>
+<br>
 <% @lists.each do |list| %>
 	<% url = "lists/#{list.id}"%>
 	<p> <a href = "<%=url%>"> <%=list.name%></a></p>
 <%end%>
-
+<br>
 <form method="get" action="new_list">
     <button type="submit">Add a new list</button>
 </form>

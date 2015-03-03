@@ -6,8 +6,9 @@ class ToDoListsController < ApplicationController
   end
 
   def show_all
+    @lists = ToDoList.all
     @finisheditems = Task.all
-    @unfinisheditems = Task.where(completed: false)
+    @unfinisheditems = Task.where(completed: nil)
     render :show_all
   end
 
@@ -38,18 +39,4 @@ class ToDoListsController < ApplicationController
     redirect_to lists_path
   end
 
-    # def create
-    # board_params = params[:board]
-    # @board = Board.new title: board_params[:title], subtitle: board_params[:subtitle]
-    # # @board = Board.new params[:board] <- need "Strong params"
-    # if @board.save
-    #   redirect_to board_path(@board) # "/boards/#{board.id}"
-    # else
-    #   # Do stuff
-    #   render :new
-    # end
-
-  # def create
-  #   list = List.find_or_create_by!
-  # end
 end

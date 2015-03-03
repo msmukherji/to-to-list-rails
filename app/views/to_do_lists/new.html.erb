@@ -1,7 +1,7 @@
 <h1> Add a new task to <%=@list.name%></h1>
-
+<br>
 <%= form_for @task do |f| %>
-  <p><%= f.text_field :name %> Task name </p>
-  <p><%= f.text_field :due %> Due date </p>
+  <p>Task name  <%= f.text_field :name %>  </p>
+  <p>Due date  <%= f.text_field :due %> (optional)</p>
   <button>Add</button>
 <% end %>

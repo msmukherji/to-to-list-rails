@@ -1,12 +1,26 @@
 <h1> Here are the items on <%=@list.name%> </h1>
+<br>
+<table class="table table-striped table-bordered table-hover">
+	<thead>
+		<tr>
+			<th> Task </th>
+			<th> Due Date </th>
+			<th> Done? </th>
+		</tr>
+	</thead>
+
 <% @items.each do |item|%>
-	<p> <%=item.name%> <%=item.due%> <%=item.completed%></p>
+	<tr>
+		<td><%=item.name%></td>
+		<td><%=item.due%></td>
+		<td><%=item.completed%></td>
+	</tr>
 <%end%>
 
-<h2> Click below to add a new task to this list </h2>
-
+</table>
 <%list_id = @list.id%>
 
+<br>
 
 <form method="get" action="/lists/<%=list_id%>/new_task">
     <button type="submit">Add a Task</button>

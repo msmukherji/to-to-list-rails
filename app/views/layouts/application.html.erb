@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
   <title>Todolistrails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-1"><a href="/">Home</a></div>
+      <div class="col-sm-1"><a href="/lists">All Tasks</a></div>
+<br>
+<br>
+
+
 
 <%= yield %>
 
