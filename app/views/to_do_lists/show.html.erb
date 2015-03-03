@@ -12,7 +12,7 @@
 <% @items.each do |item|%>
 	<tr>
 		<td><%=item.name%></td>
-		<td><%=item.due%></td>
+		<td><%=item.due%> Edit button goes here</td>
 
 		<% url = "/lists/tasks/#{item.id}" %>
 		<td><form action='<%=url%>' method='POST'>

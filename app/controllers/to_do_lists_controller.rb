@@ -42,10 +42,13 @@ class ToDoListsController < ApplicationController
   def done
     t = Task.find(params[:item_id])
     t.update! completed: true
+    #tdl = ToDoList.find(t.to_do_list_id)
+
     redirect_to lists_path
     #this does something weird
     #I think because it goes back to show function, 
-    #and keeps id as list_id.
+    #and keeps id as list_id and shows you that list
+    #instead.  why?  
   end
 
 end
