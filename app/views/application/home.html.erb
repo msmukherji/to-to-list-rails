@@ -1,13 +1,20 @@
 
 <h1> Welcome! </h1>
 <br>
+<% if current_user %>
 <h2> Here are your lists </h2>
-<br>
-<% @lists.each do |list| %>
-	<% url = "lists/#{list.id}"%>
-	<p> <a href = "<%=url%>"> <%=list.name%></a></p>
-<%end%>
-<br>
-<form method="get" action="new_list">
-    <button type="submit">Add a new list</button>
-</form>
+	<br>
+	<% @lists.each do |list| %>
+		<% url = "lists/#{list.id}"%>
+		<p> <a href = "<%=url%>"> <%=list.name%></a></p>
+	<%end%>
+	<br>
+	<form method="get" action="new_list">
+    	<button type="submit">Add a new list</button>
+	</form>
+	<br>
+  <span><%= current_user.email %></span>
+  <%= link_to " | sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <h2> Please <%= link_to "log in", new_user_session_path %> to view your lists.</h2>
+<% end %>

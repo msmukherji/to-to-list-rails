@@ -1,4 +1,5 @@
 class ToDoListsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @list = ToDoList.find(params[:id])
     @items = Task.where(to_do_list_id: @list.id)
@@ -8,7 +9,7 @@ class ToDoListsController < ApplicationController
   def show_all
     @lists = ToDoList.all
     @finisheditems = Task.all
-    @unfinisheditems = Task.where(completed: nil)
+    @unfinisheditems = Task.where(completed: nil || false)
     render :show_all
   end
 
@@ -35,6 +36,7 @@ class ToDoListsController < ApplicationController
     t = ToDoList.find_or_create_by! id: params[:id]
     list_id = t.id
     @task = Task.new name: task_params[:name], due: task_params[:due], to_do_list_id: list_id
+    #validate format of input
     @task.save!
     redirect_to lists_path
   end
@@ -43,8 +45,8 @@ class ToDoListsController < ApplicationController
     t = Task.find(params[:item_id])
     t.update! completed: true
     #tdl = ToDoList.find(t.to_do_list_id)
-
-    redirect_to lists_path
+    #redirect_to lists_path
+    redirect_to lists_path t.to_do_list_id
     #this does something weird
     #I think because it goes back to show function, 
     #and keeps id as list_id and shows you that list

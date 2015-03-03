@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'application#home'
 
   get 'lists/:id' => 'to_do_lists#show', as: 'lists'
