@@ -1,13 +1,13 @@
 class ToDoListsController < ApplicationController
   def show
     @list = ToDoList.find(params[:id])
-    @items = Task.where(to_do_list_id = params[:id])
+    @items = Task.where(to_do_list_id: @list.id)
     render :show
   end
 
   def show_all
     @finisheditems = Task.all
-    @unfinisheditems = Task.where(completed=false)
+    @unfinisheditems = Task.where(completed: false)
     render :show_all
   end
 
@@ -23,14 +23,14 @@ class ToDoListsController < ApplicationController
     redirect_to '/'
   end
 
-  def new_task 
+  def new_task
+    @list = ToDoList.find(params[:id]) 
     @task = Task.new
     render :new
   end
 
   def add_task
     task_params = params[:task]
-    binding.pry
     t = ToDoList.find_or_create_by! id: params[:id]
     list_id = t.id
     @task = Task.new name: task_params[:name], due: task_params[:due], to_do_list_id: list_id
