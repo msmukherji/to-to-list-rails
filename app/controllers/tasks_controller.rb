@@ -48,7 +48,15 @@ class TasksController < ApplicationController
   end
 
   def random
-    unfinisheditems = Task.where(completed: false)
+    lists = current_user.to_do_lists
+    unfinisheditems = []
+    tasks = Task.where(completed: false)
+    tasks.each do |task|
+      if lists.where(id: task.to_do_list_id).count > 0
+        unfinisheditems << task
+      end
+    end
+    # unfinisheditems = Task.where(completed: false)
     @randomitem = unfinisheditems.sample
     render :random
   end

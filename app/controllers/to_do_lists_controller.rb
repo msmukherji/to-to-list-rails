@@ -16,7 +16,6 @@ class ToDoListsController < ApplicationController
       tasks.each do |task|
         if @lists.where(id: task.to_do_list_id).count > 0
           @unfinisheditems << task
-          binding.pry
         end
       end
       # @tasks = tasks.where()
