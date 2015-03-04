@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def home
-    @lists = ToDoList.all
+    if current_user
+      @lists = current_user.to_do_lists
+    end
   end
 end
