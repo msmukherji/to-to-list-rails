@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   #WHICH ONE OF THE ABOVE IS DOING SOMETHING?  
   #WHY DOES IT SAY NO POST ROUTE WHEN I HAVE PATCH AND NO PATCH ROUTE WHEN I HAVE POST?
   
+  get 'lists/:id/edit' => 'to_do_lists#edit', as: 'to_do_list'
+
+  patch 'lists/:id/edit' => 'to_do_lists#update'
 end

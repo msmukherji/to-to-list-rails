@@ -13,8 +13,7 @@ class ToDoListsController < ApplicationController
     render :show_all
   end
 
-  def new_list
-    # user = User.find(params[:id]) 
+  def new_list 
     @list = ToDoList.new
     render :new_list
   end
@@ -22,11 +21,20 @@ class ToDoListsController < ApplicationController
   def add_list
     list_params = params[:to_do_list]
     @list = ToDoList.new name: list_params[:name], user_id: current_user.id
-
     @list.save!
     redirect_to '/'
   end
 
-  
+  def edit
+    @list = ToDoList.find params[:id]
+  end
 
+  def update
+    @list = ToDoList.find params[:id]
+    if @list.update name: params[:to_do_list][:name]
+      redirect_to '/'#board_path(@board)
+    else
+      render :edit
+    end
+  end
 end

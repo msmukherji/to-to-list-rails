@@ -1,0 +1,14 @@
+<h1>Editing '<%= @list.name %>'</h1>
+
+<% if @list.errors.any? %>
+  <ul>
+    <% @list.errors.full_messages.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
+  </ul>
+<% end %>
+<h2> Please enter the new name of your list below </h2>
+<%= form_for @list do |f| %>
+  <%= f.text_field :name %>
+  <button>Submit</button>
+<% end %>
