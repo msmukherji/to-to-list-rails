@@ -22,9 +22,19 @@ class TasksController < ApplicationController
     #tdl = ToDoList.find(t.to_do_list_id)
     #redirect_to lists_path
     redirect_to lists_path t.to_do_list_id
-    #this does something weird
-    #I think because it goes back to show function, 
-    #and keeps id as list_id and shows you that list
-    #instead.  why?  
+   
+  end
+
+  def edit
+    @task = Task.find params[:id]
+  end
+
+  def update
+    @task = Task.find params[:id]
+    if @task.update name: params[:task][:name], due: params[:task][:due]
+      redirect_to lists_path @task.to_do_list_id
+    else
+      render :edit
+    end
   end
 end

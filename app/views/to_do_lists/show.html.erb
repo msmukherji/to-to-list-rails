@@ -6,16 +6,21 @@
 			<th> Task </th>
 			<th> Due Date </th>
 			<th> Done? </th>
+			<th> Edit </th>
 		</tr>
 	</thead>
 
 <% @items.each do |item|%>
 	<tr>
 		<td><%=item.name%></td>
-		<td><%=item.due%> Edit button goes here</td>
+		<td><%=item.due%></td>
 
 		<% url = "/lists/tasks/#{item.id}" %>
-		<td><form action='<%=url%>' method='POST'>
+		<td>
+		<%= form_tag "#{url}", method: :patch do %>
+ 
+
+			<form action='<%=url%>' method='POST'>
 				<input type='hidden' name='_method' value='PATCH'>
 				<input type='hidden' name='item_id' value=<%=item.id%>>
 					<% if item.completed %>
@@ -23,7 +28,10 @@
 					<% else %>
 						<button class="btn btn-danger">Not yet.</button>
 					<% end %>
-			</form> 
+			</form>
+			<% end %> 
+		</td>
+		<td> <%= button_to "✎", edit_task_path(item.id), method: :get %>
 		</td>
 	</tr>
 <%end%>
@@ -34,11 +42,12 @@
 
 <br>
 
-<form method="get" action="/lists/<%=list_id%>/new_task">
+<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/new_task">
     <button type="submit">Add a Task</button>
 </form>
 
-<form method="get" action="/lists/<%=list_id%>/edit">
+<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/edit">
 	<button type="submit">Edit List Name</button>
 </form>
+
 

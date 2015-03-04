@@ -32,7 +32,7 @@ class ToDoListsController < ApplicationController
   def update
     @list = ToDoList.find params[:id]
     if @list.update name: params[:to_do_list][:name]
-      redirect_to '/'#board_path(@board)
+      redirect_to '/'
     else
       render :edit
     end
