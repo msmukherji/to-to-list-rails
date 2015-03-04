@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+
   def new_task
     @list = ToDoList.find(params[:id]) 
     @task = Task.new
@@ -12,15 +13,18 @@ class TasksController < ApplicationController
     list_id = t.id
     @task = Task.new name: task_params[:name], due: task_params[:due], to_do_list_id: list_id
     #validate format of input
-    @task.save!
-    redirect_to lists_path
+    if @task.save
+      redirect_to lists_path
+    else
+      flash[:alert] = "You already have that task on this list.  Name it something else so you don't get confused."
+      redirect_to tasks_path @task.to_do_list_id
+    end
   end
 
   def done
     t = Task.find(params[:item_id])
     t.update! completed: true
     redirect_to lists_path t.to_do_list_id
-   
   end
 
   def edit
