@@ -2,9 +2,8 @@ class ToDoListsController < ApplicationController
   before_action :authenticate_user!
   def show
     if current_user.to_do_lists.count > 0
-
-    @list = current_user.to_do_lists.find(params[:id])
-    @items = Task.where(to_do_list_id: @list.id)
+      @list = current_user.to_do_lists.find(params[:id])
+      @items = Task.where(to_do_list_id: @list.id)
     end
     render :show
   end
@@ -18,9 +17,6 @@ class ToDoListsController < ApplicationController
           @unfinisheditems << task
         end
       end
-      # @tasks = tasks.where()
-      # #@lists = ToDoList.all
-      # @unfinisheditems = @lists.tasks.where(completed: nil || false)
       render :show_all
   end
 
@@ -32,8 +28,12 @@ class ToDoListsController < ApplicationController
   def add_list
     list_params = params[:to_do_list]
     @list = current_user.to_do_lists.new name: list_params[:name], user_id: current_user.id
-    @list.save!
-    redirect_to '/'
+    if @list.save
+      redirect_to '/'
+    else
+      flash[:alert] = "You already have a list called #{params[:to_do_list][:name]}.  Don't confuse yourself!"
+      redirect_to to_do_lists_path
+    end
   end
 
   def edit
