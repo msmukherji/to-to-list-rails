@@ -1,5 +1,3 @@
-#require 'pry'
-
 class TasksController < ApplicationController
   before_action :authenticate_user!
   def new_task
@@ -21,8 +19,6 @@ class TasksController < ApplicationController
   def done
     t = Task.find(params[:item_id])
     t.update! completed: true
-    #tdl = ToDoList.find(t.to_do_list_id)
-    #redirect_to lists_path
     redirect_to lists_path t.to_do_list_id
    
   end
@@ -65,22 +61,26 @@ class TasksController < ApplicationController
   end
 
   def search
-    lists = current_user.to_do_lists
-    @possible_tasks = []
-    Task.all.each do |task|
+    if params[:name] == ""
+      flash[:alert] = "You must enter some text to search."
+      redirect_to '/search'
+    else
+      lists = current_user.to_do_lists
+      @possible_tasks = []
+      Task.all.each do |task|
         
-      if lists.where(id: task.to_do_list_id).count > 0
-        if task.name.include? params[:name]
-          @possible_tasks << task
+        if lists.where(id: task.to_do_list_id).count > 0
+          if task.name.include? params[:name]
+            @possible_tasks << task
+          end
         end
       end
-    end
 
-    if @possible_tasks.count > 0
-      render :search_results
-    else
-      render :no_results
+      if @possible_tasks.count > 0
+        render :search_results
+      else
+        render :no_results
+      end
     end
   end
-
 end
