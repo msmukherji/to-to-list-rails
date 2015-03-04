@@ -7,6 +7,7 @@
 			<th> Due Date </th>
 			<th> Done? </th>
 			<th> Edit </th>
+			<th> Delete </th>
 		</tr>
 	</thead>
 
@@ -32,6 +33,8 @@
 			<% end %> 
 		</td>
 		<td> <%= button_to "✎", edit_task_path(item.id), method: :get %>
+		</td>
+		<td> <%= button_to "☠", delete_task_path(item.id), method: :patch %>
 		</td>
 	</tr>
 <%end%>

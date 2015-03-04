@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20150303212423) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"
-    t.integer  "to_do_list_id", null: false
-    t.boolean  "completed"
+    t.integer  "to_do_list_id",                 null: false
+    t.boolean  "completed",     default: false
     t.datetime "due"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "to_do_lists", force: :cascade do |t|

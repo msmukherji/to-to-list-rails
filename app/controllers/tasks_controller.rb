@@ -37,4 +37,11 @@ class TasksController < ApplicationController
       render :edit
     end
   end
+
+  def delete
+    @task = Task.find params[:id]
+    list_id = @task.to_do_list_id
+    @task.delete
+    redirect_to lists_path list_id
+  end
 end

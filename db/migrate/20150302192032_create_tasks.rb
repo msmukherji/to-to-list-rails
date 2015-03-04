@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :name
       t.integer :to_do_list_id, null: false
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.datetime :due
 
       t.timestamps null: false

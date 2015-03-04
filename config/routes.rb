@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   get 'tasks/:id' => 'tasks#edit', as: 'edit_task'
 
   patch 'tasks/:id' => 'tasks#update', as: 'task'
+
+  patch 'tasks/:id/delete' => 'tasks#delete', as: 'delete_task'
 end
