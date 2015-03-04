@@ -50,11 +50,10 @@ class TasksController < ApplicationController
   def random
     unfinisheditems = Task.where(completed: false)
     @randomitem = unfinisheditems.sample
-    #@randomitem = rand(unfinisheditems)
     render :random
   end
 
   def search
-    
+
   end
 end
