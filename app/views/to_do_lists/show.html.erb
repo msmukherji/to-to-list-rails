@@ -44,13 +44,24 @@
 <%list_id = @list.id%>
 
 <br>
-
-<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/new_task">
-    <button type="submit">Add a Task</button>
+<table>
+	<tr>
+		<td>
+			<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/new_task">
+    			<button type="submit">Add a Task</button>
+			</form>
+		</td>
+		<td>
+			<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/edit">
+				<button type="submit">Edit List Name</button>
+			</form>
+		</td>
+		<td>
+			<%= button_to "Delete this list", delete_list_path(@list.id), method: :patch%>
+		</td>
+	<!-- # => "<form style='float: left; padding: 5px;' </form>" 
+<!-- --> 
+<!-- <form style='float: left; padding: 5px;' method="patch" action="delete_list_path(@list.id)"
+	<button type="submit">Delete This List</button>
 </form>
-
-<form style='float: left; padding: 5px;' method="get" action="/lists/<%=list_id%>/edit">
-	<button type="submit">Edit List Name</button>
-</form>
-
-
+--> 

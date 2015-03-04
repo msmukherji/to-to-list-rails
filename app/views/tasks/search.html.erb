@@ -1,0 +1,9 @@
+<h3> <span style="color: #ff0000"> under construction (you can type in the box, but it won't send you anywhere)</span></h3>
+<br>
+<br>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:name, "Search for:") %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("Search") %>
+<% end %>
+

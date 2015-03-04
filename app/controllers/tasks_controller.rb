@@ -54,4 +54,7 @@ class TasksController < ApplicationController
     render :random
   end
 
+  def search
+    
+  end
 end

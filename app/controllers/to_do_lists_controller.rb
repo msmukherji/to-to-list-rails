@@ -37,4 +37,10 @@ class ToDoListsController < ApplicationController
       render :edit
     end
   end
+
+  def delete
+    @list = ToDoList.find params[:id]
+    @list.delete
+    redirect_to '/'
+  end
 end
