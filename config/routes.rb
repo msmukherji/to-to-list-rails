@@ -37,7 +37,9 @@ Rails.application.routes.draw do
 
   get 'random' => 'tasks#random'
 
-  get 'search' => 'tasks#search'
+  get 'search' => 'tasks#new_search'
+
+  post 'search' => 'tasks#search'
 
   patch 'lists/:id/delete' => 'to_do_lists#delete', as: 'delete_list'
 end

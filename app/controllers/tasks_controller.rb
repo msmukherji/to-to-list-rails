@@ -56,12 +56,31 @@ class TasksController < ApplicationController
         unfinisheditems << task
       end
     end
-    # unfinisheditems = Task.where(completed: false)
     @randomitem = unfinisheditems.sample
     render :random
   end
 
-  def search
-
+  def new_search
+    render :search
   end
+
+  def search
+    lists = current_user.to_do_lists
+    @possible_tasks = []
+    Task.all.each do |task|
+        
+      if lists.where(id: task.to_do_list_id).count > 0
+        if task.name.include? params[:name]
+          @possible_tasks << task
+        end
+      end
+    end
+
+    if @possible_tasks.count > 0
+      render :search_results
+    else
+      render :no_results
+    end
+  end
+
 end

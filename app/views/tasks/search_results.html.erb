@@ -1,0 +1,7 @@
+<h3> Your search found the following tasks </h3>
+<br>
+<% @possible_tasks.each do |task| %>
+<br>
+	 <%= link_to "#{task.name}", lists_path(task.to_do_list_id), method: :get %>
+	 <br>
+<% end %>
