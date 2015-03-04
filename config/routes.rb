@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   patch 'tasks/:id' => 'tasks#update', as: 'task'
 
   patch 'tasks/:id/delete' => 'tasks#delete', as: 'delete_task'
+
+  get 'random' => 'tasks#random'
 end

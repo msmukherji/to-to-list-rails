@@ -1,7 +1,7 @@
 <h1> Here are the items on <%=@list.name%> </h1>
 <br>
 <table class="table table-striped table-bordered table-hover">
-	<thead>
+	<thead align="center">
 		<tr>
 			<th> Task </th>
 			<th> Due Date </th>
@@ -14,10 +14,10 @@
 <% @items.each do |item|%>
 	<tr>
 		<td><%=item.name%></td>
-		<td><%=item.due%></td>
+		<td style="width:220px" align="center"><%=item.due%></td>
 
 		<% url = "/lists/tasks/#{item.id}" %>
-		<td>
+		<td style="width:100px" align="center">
 		<%= form_tag "#{url}", method: :patch do %>
  
 
@@ -32,9 +32,9 @@
 			</form>
 			<% end %> 
 		</td>
-		<td> <%= button_to "✎", edit_task_path(item.id), method: :get %>
+		<td style="width:100px"align="center"> <%= button_to "✎", edit_task_path(item.id), method: :get %>
 		</td>
-		<td> <%= button_to "☠", delete_task_path(item.id), method: :patch %>
+		<td style="width:100px" align="center"> <%= button_to "☠", delete_task_path(item.id), method: :patch %>
 		</td>
 	</tr>
 <%end%>

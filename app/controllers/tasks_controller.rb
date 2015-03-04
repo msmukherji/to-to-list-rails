@@ -1,3 +1,5 @@
+#require 'pry'
+
 class TasksController < ApplicationController
   before_action :authenticate_user!
   def new_task
@@ -44,4 +46,12 @@ class TasksController < ApplicationController
     @task.delete
     redirect_to lists_path list_id
   end
+
+  def random
+    unfinisheditems = Task.where(completed: false)
+    @randomitem = unfinisheditems.sample
+    #@randomitem = rand(unfinisheditems)
+    render :random
+  end
+
 end
