@@ -7,7 +7,7 @@
 	<% @lists.each do |list| %>
 		<% url = "lists/#{list.id}"%>
 		<p> <a href = "<%=url%>"> <%=list.name%></a></p>
-	<%end%>
+	<% end %>
 	<br>
 	<form method="get" action="new_list">
     	<button type="submit">Add a new list</button>
